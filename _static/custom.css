@@ -1,0 +1,16 @@
+h1 { font-size: 150%; }
+h2 { font-size: 120%; }
+.bd-sidebar-primary {
+    visibility:hidden;
+}
+.primary-toggle {
+    visibility:hidden;
+}
+.bd-header-article {
+    display:none;
+}
+.my-name {
+    font-size:190%;
+    font-family:'san-serif'; 
+    font-weight:bold
+}
