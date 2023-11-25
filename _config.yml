@@ -1,11 +1,12 @@
 # Book settings
 # Learn more at https://jupyterbook.org/customize/config.html
 
-#title: Kasemsit
+title: Kasemsit Teeyapan
 author: Kasemsit Teeyapan
 copyright: "2023"  # Copyright year to be placed in the footer
 logo: ""
 only_build_toc_files: false
+exclude_patterns: [_build, Thumbs.db, .DS_Store, "**.ipynb_checkpoints", README.md]
 
 # Force re-execution of notebooks on each build.
 # See https://jupyterbook.org/content/execute.html
@@ -34,3 +35,5 @@ html:
   use_repository_button: false
   home_page_in_navbar: false  
   google_analytics_id: G-GMHDN37TGQ
+
+  

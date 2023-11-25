@@ -14,3 +14,6 @@ h2 { font-size: 120%; }
     font-family:'san-serif'; 
     font-weight:bold
 }
+ul.simple {
+    padding-left: 0.5em;
+}

@@ -28,7 +28,7 @@ kernelspec:
 :::::{grid-item}
 :padding: 0
 <span class="my-name">Kasemsit Teeyapan</span><br>
-`kasemsit.t`@`cmu.ac.th`<br>
+`kasemsit.t` at `cmu` dot `ac` dot `th`<br>
 [[Google Scholar]](https://scholar.google.com/citations?user=kBnrg38AAAAJ&hl)<br>
 [[Chiang Mai University]](https://cpe.eng.cmu.ac.th/lecturer-viewthai.php?view_id=Kasemsit)
 :::::
@@ -42,10 +42,12 @@ kernelspec:
 
 I am an Assistant Professor at Department of Computer Engineering, Faculty of Engineering, Chiang Mai University.
 
-My research interest is in machine learning and its applications. 
-
+My research interest is mainly in Machine Learning and its applications. 
 
 # Teaching
+
+:::{admonition} Undergraduate level
+:class: note
 
 - [269328 Data Analytics for Non-IT Majors](https://kasemsit.github.io/269382) 
 - 261459 Deep Learning
@@ -53,6 +55,7 @@ My research interest is in machine learning and its applications.
 - 261306 Computer Engineering Probability and Statistics
 - 261102 Computer Programming
 - 259201 Computer Programming for Engineers
+:::
 
 # Publications
 
