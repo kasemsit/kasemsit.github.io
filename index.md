@@ -52,7 +52,7 @@ My research interest is mainly in Machine Learning and its applications.
 - [269328 Data Analytics for Non-IT Majors](https://kasemsit.github.io/269382) 
 - 261459 Deep Learning
 - 261405 Advanced Computer Engineering Technology
-- 261306 Computer Engineering Probability and Statistics
+- [261306 Computer Engineering Probability and Statistics](https://kasemsit.github.io/261306)
 - 261102 Computer Programming
 - 259201 Computer Programming for Engineers
 :::
