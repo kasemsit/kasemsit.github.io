@@ -14,7 +14,70 @@ layout: default
 {% endcomment %}
 
 <style>
+  /* Card spacing — own class instead of Bootstrap's mt-3/p-3 (those live in a
+     cascade layer whose !important we can't override from here). */
+  .cv .cv-card { margin-top: 1rem; padding: 1rem; }
+  .cv .cv-card table { margin-bottom: 0 !important; }
+
+  /* No list bullets in Education, Experience, and Awards (screen + print) */
+  .cv-plain ul,
+  .cv-plain ol,
+  .cv-plain li { list-style: none !important; }
+  /* zero the default <ul> padding (list-group isn't styled in al-folio v1), so the
+     date column lines up flush with the section heading */
+  .cv-plain ul,
+  .cv-plain ol { padding-left: 0 !important; margin-left: 0 !important; }
+  .cv .publications ol.bibliography { padding-left: 0 !important; margin-left: 0 !important; }
+  /* align highlight lines (Thesis/Advisor, Assistant Professor/Lecturer) with the
+     entry's title/institution lines, which are indented by ml-md-4 (1.5rem) */
+  .cv-plain .items { padding-left: 0 !important; margin-left: 1.5rem !important; }
+
+  /* Tighten Education / Experience / Awards to a denser, Publications-like rhythm */
+  .cv-plain .list-group-item { padding-top: 0.3rem !important; padding-bottom: 0.3rem !important; }
+  .cv-plain h6 { margin-bottom: 0.1rem !important; line-height: 1.35; }
+  .cv-plain .items { margin-top: 0.15rem !important; margin-bottom: 0 !important; }
+  .cv-plain .items li { margin-bottom: 0 !important; }
+  .cv-plain .location { margin-bottom: 0 !important; }
+
+  /* Align the left (date/badge) column flush with the section heading and give
+     every section the same two-column proportions — screen and print alike */
+  .cv-plain .row,
+  .cv .publications ol.bibliography li > .row { margin-left: 0 !important; margin-right: 0 !important; }
+  .cv-plain .date-column,
+  .cv-plain .col-sm-2.text-center,
+  .cv .publications ol.bibliography li .abbr {
+    flex: 0 0 20% !important;
+    max-width: 20% !important;
+    transform: none !important;
+    padding-left: 0 !important;
+    margin-left: 0 !important;
+    text-align: left !important;
+  }
+  .cv-plain .col-sm-10,
+  .cv .publications ol.bibliography li .col-sm-8 {
+    flex: 0 0 80% !important;
+    max-width: 80% !important;
+  }
+  /* Awards: year badge inline on the same line as the title, awarder below */
+  .cv-awards .awards-list { list-style: none !important; padding-left: 0 !important; margin: 0 !important; }
+  .cv-awards .award-entry { display: flex; align-items: baseline; gap: 0.5rem; padding: 0.2rem 0; }
+  .cv-awards .award-date {
+    flex: 0 0 auto;
+    background-color: var(--global-theme-color) !important;
+    color: #fff !important;
+    padding: 0.2em 0.55em;
+    border-radius: 0.25rem;
+  }
+  .cv-awards .award-title { font-weight: bold; }
+  .cv-awards .award-awarder { display: block; }
+  /* keep the date/location table inside its column so it doesn't overlap content,
+     and drop the default td border (the faint gray line above/below the badge) */
+  .cv-plain table.table-cv { width: 100% !important; table-layout: fixed !important; margin: 0 !important; border-collapse: collapse !important; }
+  .cv-plain table.table-cv td { padding: 0 !important; border: 0 !important; }
+  .cv-plain .location { text-align: left !important; white-space: normal !important; word-break: break-word; }
+
   /* Publications section (pulled from _bibliography/papers.bib) */
+  .cv-publications .publications { margin-top: 0; }
   .cv-publications .publications h2.pub-category {
     color: var(--global-theme-color);
     border-bottom: 1px solid var(--global-divider-color);
@@ -24,6 +87,8 @@ layout: default
     text-align: left;
     font-size: 1.2rem;
   }
+  /* the first sub-heading sits right under the "Publications" title — tighten the gap */
+  .cv-publications .publications h2.pub-category:first-of-type { margin-top: 0.5rem; }
 
   /* Clean, compact print / PDF output */
   @media print {
@@ -47,24 +112,36 @@ layout: default
     .col-sm-9 { max-width: 100% !important; flex: 0 0 100% !important; width: 100% !important; }
 
     /* flatten cards into clean, tight sections */
-    .cv { font-size: 0.82rem; line-height: 1.25; }
+    .cv { font-size: 0.85rem; line-height: 1.3; }
+
+    /* consistent font sizes across all sections/cards */
+    .cv h6 { font-size: 0.85rem !important; line-height: 1.3; }
+    .cv h6.title,
+    .cv .publications .title,
+    .cv-awards .award-title { font-size: 0.92rem !important; font-weight: bold; }
+    .cv p, .cv td, .cv li, .cv span,
+    .cv .author, .cv .periodical { font-size: 0.85rem !important; }
+
     .cv .card {
       border: none !important;
       box-shadow: none !important;
       background: transparent !important;
       padding: 0 !important;
-      margin-top: 0.35rem !important;
+      margin-top: 0.15rem !important;
       margin-bottom: 0 !important;
-      break-inside: avoid;
     }
+    /* sections flow across pages; keep a heading with its first rows and
+       never split an individual entry */
     .cv .card-title {
       color: #000 !important;
       border-bottom: 1px solid #000;
-      padding-bottom: 0.15rem;
-      margin-bottom: 0.35rem;
+      padding-bottom: 0.12rem;
+      margin-top: 0.35rem !important;
+      margin-bottom: 0.25rem;
       font-size: 1.05rem;
+      break-after: avoid;
     }
-    .cv .list-group-item { padding-top: 0.12rem !important; padding-bottom: 0.12rem !important; }
+    .cv .list-group-item { padding-top: 0.12rem !important; padding-bottom: 0.12rem !important; break-inside: avoid; }
     .cv .items { margin-bottom: 0.2rem !important; }
     .cv .items li, .cv ul li { margin-bottom: 0.05rem !important; }
     .cv .interest-item, .cv .language-item { padding: 0.1rem 0 !important; }
@@ -77,11 +154,15 @@ layout: default
     body, h1, h2, h3, h4, h5, h6, p, td, li, span { color: #000 !important; }
     a { color: #000 !important; text-decoration: none !important; }
 
-    /* CV date badges: outline instead of solid fill */
+    /* Date badges (Education/Experience/Awards): small, colored like the
+       conference badges, no border, left-aligned with the location */
     .cv .badge.danger-color-dark {
-      background: transparent !important;
-      color: #000 !important;
-      border: 1px solid #777 !important;
+      background-color: var(--global-theme-color) !important;
+      color: #fff !important;
+      border: none !important;
+      min-width: 0 !important;
+      width: auto !important;
+      font-size: 0.75em !important; /* match the conference (abbr) badge size */
     }
     /* keep publication abbreviation badges (colored) visible */
     .publications .abbr abbr,
@@ -90,14 +171,18 @@ layout: default
       print-color-adjust: exact;
     }
 
+    .cv-publications .card-title { margin-bottom: 0.1rem !important; }
+    .cv-publications .publications { margin-top: 0 !important; }
     .cv-publications .publications h2.pub-category {
       color: #000 !important;
       border-bottom: 1px solid #000;
       font-size: 1rem;
-      margin-top: 0.6rem;
-      margin-bottom: 0.3rem;
+      margin-top: 0.5rem;
+      margin-bottom: 0.25rem;
     }
-    .publications ol.bibliography li { margin-bottom: 0.35rem !important; }
+    .cv-publications .publications h2.pub-category:first-of-type { margin-top: 0.1rem !important; }
+    .publications ol.bibliography { margin-top: 0 !important; }
+    .publications ol.bibliography li { margin-bottom: 0.5rem !important; }
 
     @page { margin: 11mm 11mm; }
   }
@@ -129,7 +214,7 @@ layout: default
         <!-- Contact Information -->
         {% if cv.name or cv.label or cv.email or cv.address %}
           <a class="anchor" id="contact-information"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card">
             <h3 class="card-title font-weight-medium">Contact Information</h3>
             <table class="table table-cv table-sm table-borderless">
               {% if cv.name %}<tr><td class="p-1 pr-2 font-weight-bold"><b>Name</b></td><td class="p-1 pl-2 font-weight-light">{{ cv.name }}</td></tr>{% endif %}
@@ -145,7 +230,7 @@ layout: default
         <!-- Professional Summary -->
         {% if cv.summary %}
           <a class="anchor" id="professional-summary"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card">
             <h3 class="card-title font-weight-medium">Professional Summary</h3>
             <p>{{ cv.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
           </div>
@@ -154,7 +239,7 @@ layout: default
         <!-- Education -->
         {% if cv.sections.Education %}
           <a class="anchor" id="education"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card cv-plain">
             <h3 class="card-title font-weight-medium">Education</h3>
             <div>{% assign entries = cv.sections.Education %}{% include cv/education.liquid %}</div>
           </div>
@@ -167,7 +252,7 @@ layout: default
         {% assign combined_experience = exp | concat: vol %}
         {% if combined_experience.size > 0 %}
           <a class="anchor" id="experience"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card cv-plain">
             <h3 class="card-title font-weight-medium">Experience</h3>
             <div>{% assign entries = combined_experience %}{% include cv/experience.liquid %}</div>
           </div>
@@ -175,7 +260,7 @@ layout: default
 
         <!-- Publications (from _bibliography/papers.bib) -->
         <a class="anchor" id="publications"></a>
-        <div class="card mt-3 p-3 cv-publications">
+        <div class="card cv-card cv-publications">
           <h3 class="card-title font-weight-medium">Publications</h3>
           <div class="publications">
             <h2 class="pub-category" data-toc-skip>International Journals</h2>
@@ -193,7 +278,7 @@ layout: default
         {% assign grants = cv.sections['Research Grants'] %}
         {% if grants %}
           <a class="anchor" id="research-grants"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card">
             <h3 class="card-title font-weight-medium">Research Grants</h3>
             <ul class="card-text font-weight-light list-group list-group-flush">
               {% for entry in grants %}<li class="list-group-item">{{ entry.bullet | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
@@ -201,19 +286,29 @@ layout: default
           </div>
         {% endif %}
 
-        <!-- Awards -->
+        <!-- Awards (rendered inline so the year badge sits on the same line as the title) -->
         {% if cv.sections.Awards %}
           <a class="anchor" id="awards"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card cv-awards">
             <h3 class="card-title font-weight-medium">Awards</h3>
-            <div>{% assign entries = cv.sections.Awards %}{% include cv/awards.liquid %}</div>
+            <ul class="awards-list">
+              {% for entry in cv.sections.Awards %}
+                <li class="award-entry">
+                  {% if entry.date %}<span class="badge danger-color-dark award-date">{{ entry.date | split: '-' | first }}</span>{% endif %}
+                  <span class="award-body">
+                    <span class="award-title">{% if entry.url %}<a href="{{ entry.url }}">{{ entry.title }}</a>{% else %}{{ entry.title }}{% endif %}</span>
+                    {% if entry.awarder %}<span class="award-awarder">{{ entry.awarder }}</span>{% endif %}
+                  </span>
+                </li>
+              {% endfor %}
+            </ul>
           </div>
         {% endif %}
 
         <!-- Teaching (generic, with nested sub-bullets) -->
         {% if cv.sections.Teaching %}
           <a class="anchor" id="teaching"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card">
             <h3 class="card-title font-weight-medium">Teaching</h3>
             <ul class="card-text font-weight-light list-group list-group-flush">
               {% for entry in cv.sections.Teaching %}<li class="list-group-item">{{ entry.bullet | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
@@ -224,7 +319,7 @@ layout: default
         <!-- Service (generic, with nested sub-bullets) -->
         {% if cv.sections.Service %}
           <a class="anchor" id="service"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card">
             <h3 class="card-title font-weight-medium">Service</h3>
             <ul class="card-text font-weight-light list-group list-group-flush">
               {% for entry in cv.sections.Service %}<li class="list-group-item">{{ entry.bullet | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
@@ -235,7 +330,7 @@ layout: default
         <!-- Certificates -->
         {% if cv.sections.Certificates %}
           <a class="anchor" id="certificates"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card">
             <h3 class="card-title font-weight-medium">Certificates</h3>
             <div>{% assign entries = cv.sections.Certificates %}{% include cv/certificates.liquid %}</div>
           </div>
@@ -244,7 +339,7 @@ layout: default
         <!-- Languages -->
         {% if cv.sections.Languages %}
           <a class="anchor" id="languages"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card">
             <h3 class="card-title font-weight-medium">Languages</h3>
             <div>{% assign entries = cv.sections.Languages %}{% include cv/languages.liquid %}</div>
           </div>
@@ -253,7 +348,7 @@ layout: default
         <!-- Interests -->
         {% if cv.sections.Interests %}
           <a class="anchor" id="interests"></a>
-          <div class="card mt-3 p-3">
+          <div class="card cv-card">
             <h3 class="card-title font-weight-medium">Interests</h3>
             <div>{% assign entries = cv.sections.Interests %}{% include cv/interests.liquid %}</div>
           </div>

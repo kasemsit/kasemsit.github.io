@@ -53,17 +53,22 @@ cv:
         end_date: 2005
 
     Experience:
-      - company: Department of Computer Engineering, Faculty of Engineering, Chiang Mai University
-        position: Assistant Professor
+      - company: Pixpulse Innovation Co., Ltd.
+        position: Founder
         location: Chiang Mai, Thailand
-        start_date: 2022-12
+        start_date: 2026
         end_date: present
-
-      - company: Department of Computer Engineering, Faculty of Engineering, Chiang Mai University
-        position: Lecturer
+        summary: >
+          A HealthTech startup developing and commercializing PixPulse, computer-vision
+          software that reads bedside patient monitors and converts the displayed vital
+          signs into structured digital data for ICU care.
+      - position: Department of Computer Engineering, Faculty of Engineering, Chiang Mai University
         location: Chiang Mai, Thailand
         start_date: 2018-07
-        end_date: 2022-12
+        end_date: present
+        highlights:
+          - "**Assistant Professor** (Dec 2022 – present)"
+          - "**Lecturer** (Jul 2018 – Dec 2022)"
 
       - company: Skeletal Biology and Engineering Research Center, KU Leuven Campus Group T
         position: Doctoral exchange student
@@ -89,9 +94,11 @@ cv:
         summary: Supervised the manufacturing processes of interchangeable lenses.
 
     Research Grants:
+      - bullet: "**PixPulse: converting vital-sign images into a digital system integrated with electronic medical records (EMR)** — TED Youth Startup, Technology and Innovation-Based Enterprise Development Fund (TED Fund), Ministry of Higher Education, Science, Research and Innovation (MHESI) (2026–present). *Co-investigator.*"
+      - bullet: "**Innovation in auto-generating vital sign charts from monitor screen images** — Innovation Grant, Faculty of Medicine, Chiang Mai University (2025–2026). *Co-investigator.*"
       - bullet: "**Musculoskeletal abnormality detection for upper extremity** — The Murata Science Foundation (2019). *Principal Investigator.*"
-      - bullet: "**Machine Learning System Prototype for Digital Power Plant** — Electricity Generating Authority of Thailand (2018–2019). *Co-investigator; PI: Prof. Dr. Nipon Theera-Umpon.*"
-      - bullet: "**Development of Sound Source Localization and Speech Detection for Dinsow Mini Robot** — Thailand Research Fund (2018–2019). *Co-investigator; PI: Prof. Dr. Nipon Theera-Umpon.*"
+      - bullet: "**Machine Learning System Prototype for Digital Power Plant** — Electricity Generating Authority of Thailand (2018–2019). *Researcher.*"
+      - bullet: "**Development of Sound Source Localization and Speech Detection for Dinsow Mini Robot** — Thailand Research Fund (2018–2019). *Researcher.*"
 
     Awards:
       - title: Winner, MED CHICKATHON 2025 Pitching Competition

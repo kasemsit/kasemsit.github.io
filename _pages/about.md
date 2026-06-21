@@ -31,4 +31,6 @@ I am an Assistant Professor at the [Department of Computer Engineering](https://
 
 My current research focuses on **forensic odontology** and **computer vision-based reading of medical devices**, applying machine learning and deep learning to these problems. I also work more broadly on medical image analysis and computer vision.
 
+I am also the founder of **Pixpulse Innovation**, a HealthTech startup that applies computer vision to medical device reading — turning bedside ICU monitor displays into structured digital data.
+
 Feel free to reach out by [email](mailto:kasemsit.t@cmu.ac.th), or browse my [publications](/publications/) and the courses I [teach](/teaching/).
