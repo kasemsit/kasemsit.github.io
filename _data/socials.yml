@@ -1,0 +1,11 @@
+# this file contains the social media links and usernames of the author
+# the socials will be displayed in the order they are defined here
+# for more information, please refer to the documentation of jekyll-socials plugin: https://github.com/george-gca/jekyll-socials
+cv_pdf: /assets/pdf/cv.pdf # CV download icon on the landing page
+email: kasemsit.t@cmu.ac.th # your email address
+orcid_id: 0000-0002-3900-7133 # your ORCID ID
+scholar_userid: kBnrg38AAAAJ # your Google Scholar ID
+custom_social: # Chiang Mai University faculty profile
+  logo: https://cpe.eng.cmu.ac.th/img/favicon.ico
+  title: CMU Faculty Profile
+  url: https://cpe.eng.cmu.ac.th/lecturer-viewthai.php?view_id=Kasemsit

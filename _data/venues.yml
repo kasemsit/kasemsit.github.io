@@ -1,0 +1,5 @@
+# Map venue abbreviations to links/colors for jekyll-scholar.
+# Example:
+# "NCA":
+#   url: https://www.springer.com/journal/521
+#   color: "#cc0000"

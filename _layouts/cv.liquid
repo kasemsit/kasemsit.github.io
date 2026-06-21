@@ -1,0 +1,275 @@
+---
+layout: default
+---
+{% comment %}
+  Local override of the al_folio_core `cv` layout.
+
+  Renders the CV from _data/cv.yml (the single source of truth) in an order
+  suited to an academic CV, and appends the publication list pulled from
+  _bibliography/papers.bib (also a single source) so the CV is self-contained.
+  Print styles keep the PDF export clean and compact.
+
+  Section order: Contact, Summary, Education, Experience, Publications,
+  Research Grants, Awards, Teaching, Service, Certificates, Languages, Interests.
+{% endcomment %}
+
+<style>
+  /* Publications section (pulled from _bibliography/papers.bib) */
+  .cv-publications .publications h2.pub-category {
+    color: var(--global-theme-color);
+    border-bottom: 1px solid var(--global-divider-color);
+    padding-bottom: 0.25rem;
+    margin-top: 1.5rem;
+    margin-bottom: 0.75rem;
+    text-align: left;
+    font-size: 1.2rem;
+  }
+
+  /* Clean, compact print / PDF output */
+  @media print {
+    nav#navbar,
+    footer,
+    #light-toggle, #light-toggle-dark, #light-toggle-light, #light-toggle-system,
+    .progress-container, #progress,
+    nav#toc-sidebar,
+    .post-header .float-right,
+    .publications .links,
+    .publications .badges {
+      display: none !important;
+    }
+
+    /* remove the fixed-navbar top offset and large top margin (navbar is hidden in print) */
+    body.fixed-top-nav, body { padding-top: 0 !important; }
+    [role="main"], .container.mt-5 { margin-top: 0 !important; padding-top: 0 !important; }
+    .post-header { margin-bottom: 0.2rem !important; padding-top: 0 !important; }
+
+    /* full-width content (drop the TOC column) */
+    .col-sm-9 { max-width: 100% !important; flex: 0 0 100% !important; width: 100% !important; }
+
+    /* flatten cards into clean, tight sections */
+    .cv { font-size: 0.82rem; line-height: 1.25; }
+    .cv .card {
+      border: none !important;
+      box-shadow: none !important;
+      background: transparent !important;
+      padding: 0 !important;
+      margin-top: 0.35rem !important;
+      margin-bottom: 0 !important;
+      break-inside: avoid;
+    }
+    .cv .card-title {
+      color: #000 !important;
+      border-bottom: 1px solid #000;
+      padding-bottom: 0.15rem;
+      margin-bottom: 0.35rem;
+      font-size: 1.05rem;
+    }
+    .cv .list-group-item { padding-top: 0.12rem !important; padding-bottom: 0.12rem !important; }
+    .cv .items { margin-bottom: 0.2rem !important; }
+    .cv .items li, .cv ul li { margin-bottom: 0.05rem !important; }
+    .cv .interest-item, .cv .language-item { padding: 0.1rem 0 !important; }
+    .cv .row { margin-bottom: 0 !important; }
+    .cv .card-text { margin-bottom: 0.15rem !important; }
+    .cv p { margin-bottom: 0.25rem !important; }
+    .post-title { font-size: 1.5rem; margin-bottom: 0.1rem; }
+    .post-description { margin-bottom: 0.25rem; }
+
+    body, h1, h2, h3, h4, h5, h6, p, td, li, span { color: #000 !important; }
+    a { color: #000 !important; text-decoration: none !important; }
+
+    /* CV date badges: outline instead of solid fill */
+    .cv .badge.danger-color-dark {
+      background: transparent !important;
+      color: #000 !important;
+      border: 1px solid #777 !important;
+    }
+    /* keep publication abbreviation badges (colored) visible */
+    .publications .abbr abbr,
+    .publications .abbr abbr a {
+      -webkit-print-color-adjust: exact;
+      print-color-adjust: exact;
+    }
+
+    .cv-publications .publications h2.pub-category {
+      color: #000 !important;
+      border-bottom: 1px solid #000;
+      font-size: 1rem;
+      margin-top: 0.6rem;
+      margin-bottom: 0.3rem;
+    }
+    .publications ol.bibliography li { margin-bottom: 0.35rem !important; }
+
+    @page { margin: 11mm 11mm; }
+  }
+</style>
+
+{% assign cv_feature_enabled = site.al_folio.features.cv.enabled | default: true %}
+
+{% if site.plugins contains 'al_folio_cv' and cv_feature_enabled and site.data.cv and site.data.cv.cv %}
+  {% assign cv = site.data.cv.cv %}
+
+  <div class="post">
+    <header class="post-header">
+      <h1 class="post-title">
+        {{ page.title }}
+        {% if page.cv_pdf %}
+          <a
+            {% if page.cv_pdf contains '://' %}href="{{ page.cv_pdf }}"{% else %}href="{{ page.cv_pdf | relative_url }}"{% endif %}
+            target="_blank" rel="noopener noreferrer" class="float-right">
+            <i class="fa-solid fa-file-pdf"></i>
+          </a>
+        {% endif %}
+      </h1>
+      {% if page.description %}<p class="post-description">{{ page.description }}</p>{% endif %}
+    </header>
+
+    <article>
+      <div class="cv">
+
+        <!-- Contact Information -->
+        {% if cv.name or cv.label or cv.email or cv.address %}
+          <a class="anchor" id="contact-information"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Contact Information</h3>
+            <table class="table table-cv table-sm table-borderless">
+              {% if cv.name %}<tr><td class="p-1 pr-2 font-weight-bold"><b>Name</b></td><td class="p-1 pl-2 font-weight-light">{{ cv.name }}</td></tr>{% endif %}
+              {% if cv.label %}<tr><td class="p-1 pr-2 font-weight-bold"><b>Professional Title</b></td><td class="p-1 pl-2 font-weight-light">{{ cv.label }}</td></tr>{% endif %}
+              {% if cv.email %}<tr><td class="p-1 pr-2 font-weight-bold"><b>Email</b></td><td class="p-1 pl-2 font-weight-light">{{ cv.email }}</td></tr>{% endif %}
+              {% if cv.address %}<tr><td class="p-1 pr-2 font-weight-bold"><b>Location</b></td><td class="p-1 pl-2 font-weight-light">
+                {% if cv.address.street %}{{ cv.address.street }}, {% endif %}{% if cv.address.city %}{{ cv.address.city }}, {% endif %}{% if cv.address.region %}{{ cv.address.region }} {% endif %}{% if cv.address.postalCode %}{{ cv.address.postalCode }}{% endif %}
+              </td></tr>{% endif %}
+            </table>
+          </div>
+        {% endif %}
+
+        <!-- Professional Summary -->
+        {% if cv.summary %}
+          <a class="anchor" id="professional-summary"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Professional Summary</h3>
+            <p>{{ cv.summary | markdownify | remove: '<p>' | remove: '</p>' }}</p>
+          </div>
+        {% endif %}
+
+        <!-- Education -->
+        {% if cv.sections.Education %}
+          <a class="anchor" id="education"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Education</h3>
+            <div>{% assign entries = cv.sections.Education %}{% include cv/education.liquid %}</div>
+          </div>
+        {% endif %}
+
+        <!-- Experience (+ Volunteer) -->
+        {% assign empty_array = '' | split: ',' %}
+        {% assign exp = cv.sections.Experience | default: empty_array %}
+        {% assign vol = cv.sections.Volunteer | default: empty_array %}
+        {% assign combined_experience = exp | concat: vol %}
+        {% if combined_experience.size > 0 %}
+          <a class="anchor" id="experience"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Experience</h3>
+            <div>{% assign entries = combined_experience %}{% include cv/experience.liquid %}</div>
+          </div>
+        {% endif %}
+
+        <!-- Publications (from _bibliography/papers.bib) -->
+        <a class="anchor" id="publications"></a>
+        <div class="card mt-3 p-3 cv-publications">
+          <h3 class="card-title font-weight-medium">Publications</h3>
+          <div class="publications">
+            <h2 class="pub-category" data-toc-skip>International Journals</h2>
+            {% bibliography --query @*[category=intl_journal] %}
+            <h2 class="pub-category" data-toc-skip>International Conferences with Full Articles</h2>
+            {% bibliography --query @*[category=intl_conf] %}
+            <h2 class="pub-category" data-toc-skip>Short Peer-reviewed Conference Articles</h2>
+            {% bibliography --query @*[category=short_conf] %}
+            <h2 class="pub-category" data-toc-skip>National Journal</h2>
+            {% bibliography --query @*[category=national_journal] %}
+          </div>
+        </div>
+
+        <!-- Research Grants (generic bullet list) -->
+        {% assign grants = cv.sections['Research Grants'] %}
+        {% if grants %}
+          <a class="anchor" id="research-grants"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Research Grants</h3>
+            <ul class="card-text font-weight-light list-group list-group-flush">
+              {% for entry in grants %}<li class="list-group-item">{{ entry.bullet | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <!-- Awards -->
+        {% if cv.sections.Awards %}
+          <a class="anchor" id="awards"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Awards</h3>
+            <div>{% assign entries = cv.sections.Awards %}{% include cv/awards.liquid %}</div>
+          </div>
+        {% endif %}
+
+        <!-- Teaching (generic, with nested sub-bullets) -->
+        {% if cv.sections.Teaching %}
+          <a class="anchor" id="teaching"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Teaching</h3>
+            <ul class="card-text font-weight-light list-group list-group-flush">
+              {% for entry in cv.sections.Teaching %}<li class="list-group-item">{{ entry.bullet | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <!-- Service (generic, with nested sub-bullets) -->
+        {% if cv.sections.Service %}
+          <a class="anchor" id="service"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Service</h3>
+            <ul class="card-text font-weight-light list-group list-group-flush">
+              {% for entry in cv.sections.Service %}<li class="list-group-item">{{ entry.bullet | markdownify | remove: '<p>' | remove: '</p>' }}</li>{% endfor %}
+            </ul>
+          </div>
+        {% endif %}
+
+        <!-- Certificates -->
+        {% if cv.sections.Certificates %}
+          <a class="anchor" id="certificates"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Certificates</h3>
+            <div>{% assign entries = cv.sections.Certificates %}{% include cv/certificates.liquid %}</div>
+          </div>
+        {% endif %}
+
+        <!-- Languages -->
+        {% if cv.sections.Languages %}
+          <a class="anchor" id="languages"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Languages</h3>
+            <div>{% assign entries = cv.sections.Languages %}{% include cv/languages.liquid %}</div>
+          </div>
+        {% endif %}
+
+        <!-- Interests -->
+        {% if cv.sections.Interests %}
+          <a class="anchor" id="interests"></a>
+          <div class="card mt-3 p-3">
+            <h3 class="card-title font-weight-medium">Interests</h3>
+            <div>{% assign entries = cv.sections.Interests %}{% include cv/interests.liquid %}</div>
+          </div>
+        {% endif %}
+
+      </div>
+    </article>
+  </div>
+{% else %}
+  <div class="post">
+    <header class="post-header">
+      <h1 class="post-title">{{ page.title }}</h1>
+      <p class="post-description">CV rendering is unavailable.</p>
+    </header>
+    <article>
+      <p>Provide CV data in <code>_data/cv.yml</code> and enable the <code>al_folio_cv</code> plugin.</p>
+    </article>
+  </div>
+{% endif %}

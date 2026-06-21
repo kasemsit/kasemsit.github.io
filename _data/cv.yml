@@ -1,0 +1,184 @@
+cv:
+  name: Kasemsit Teeyapan
+  label: Assistant Professor, Ph.D.
+  email: kasemsit.t@cmu.ac.th
+  location: Chiang Mai, Thailand
+  image: prof_pic.jpg
+  summary: >
+    Assistant Professor at the Department of Computer Engineering, Faculty of Engineering,
+    Chiang Mai University. Current research focuses on forensic odontology and computer
+    vision-based reading of medical devices, alongside broader work in medical image
+    analysis, computer vision, and machine learning.
+
+  social_networks:
+    - network: Google Scholar
+      username: kBnrg38AAAAJ
+    - network: ORCID
+      username: 0000-0002-3900-7133
+
+  address:
+    street: 239 Huay Kaew Road, Suthep, Mueang
+    city: Chiang Mai
+    region: Chiang Mai
+    postalCode: "50200"
+    countryCode: TH
+
+  sections:
+    Education:
+      - institution: Chiang Mai University
+        location: Chiang Mai, Thailand
+        url: https://www.cmu.ac.th/
+        area: Electrical Engineering
+        studyType: Ph.D.
+        start_date: 2012
+        end_date: 2018
+        highlights:
+          - 'Thesis: "Twin Hyper-ellipsoidal Support Vector Classifier"'
+          - "Advisor: Prof. Dr. Nipon Theera-Umpon"
+
+      - institution: Georgia Institute of Technology
+        location: Atlanta, GA, USA
+        url: https://www.gatech.edu/
+        area: Electrical and Computer Engineering
+        studyType: M.S.
+        start_date: 2007
+        end_date: 2008
+
+      - institution: Chiang Mai University
+        location: Chiang Mai, Thailand
+        url: https://www.cmu.ac.th/
+        area: Electrical Engineering (First-class Honors, Gold Medal)
+        studyType: B.Eng.
+        start_date: 2001
+        end_date: 2005
+
+    Experience:
+      - company: Department of Computer Engineering, Faculty of Engineering, Chiang Mai University
+        position: Assistant Professor
+        location: Chiang Mai, Thailand
+        start_date: 2022-12
+        end_date: present
+
+      - company: Department of Computer Engineering, Faculty of Engineering, Chiang Mai University
+        position: Lecturer
+        location: Chiang Mai, Thailand
+        start_date: 2018-07
+        end_date: 2022-12
+
+      - company: Skeletal Biology and Engineering Research Center, KU Leuven Campus Group T
+        position: Doctoral exchange student
+        location: Leuven, Belgium
+        start_date: 2017-02
+        end_date: 2017-08
+        summary: Worked with Veerle Bloemen on single-cell tracking and image processing.
+
+      - company: Humanoid Robotics Lab, Georgia Institute of Technology
+        position: Graduate Research Assistant
+        location: Atlanta, GA, USA
+        start_date: 2009-01
+        end_date: 2011-05
+        summary: >
+          Worked with Mike Stilman to develop Golem Krang, a two-wheeled dynamically-stable
+          humanoid robot, focusing on modeling and control that exploit the robot's natural dynamics.
+
+      - company: Nikon (Thailand) Co., Ltd.
+        position: Lens production engineer
+        location: Ayutthaya, Thailand
+        start_date: 2005-04
+        end_date: 2005-12
+        summary: Supervised the manufacturing processes of interchangeable lenses.
+
+    Research Grants:
+      - bullet: "**Musculoskeletal abnormality detection for upper extremity** — The Murata Science Foundation (2019). *Principal Investigator.*"
+      - bullet: "**Machine Learning System Prototype for Digital Power Plant** — Electricity Generating Authority of Thailand (2018–2019). *Co-investigator; PI: Prof. Dr. Nipon Theera-Umpon.*"
+      - bullet: "**Development of Sound Source Localization and Speech Detection for Dinsow Mini Robot** — Thailand Research Fund (2018–2019). *Co-investigator; PI: Prof. Dr. Nipon Theera-Umpon.*"
+
+    Awards:
+      - title: Winner, MED CHICKATHON 2025 Pitching Competition
+        awarder: Faculty of Medicine, Chiang Mai University
+        date: 2025-06
+      - title: Erasmus+ / Erasmus Programme
+        awarder: European Commission
+        date: 2017
+      - title: Royal Thai Government Scholarship
+        awarder: Ministry of Science and Technology, Thailand
+        date: 2007-2015
+      - title: Excellent Academic Award (Gold Medal)
+        awarder: Chiang Mai University
+        date: 2005
+      - title: Best Academic Achievement Award in Electrical Engineering
+        awarder: The Engineering Institute of Thailand under H.M. the King's Patronage
+        date: 2004
+      - title: Most Outstanding Freshman in Engineering
+        awarder: Prof. Dr. Tab Nilanidhi Foundation
+        date: 2002
+
+    Service:
+      - bullet: |
+          **Journal reviewer**
+
+          - IEEE Transactions on Neural Networks and Learning Systems
+          - IEEE Transactions on Artificial Intelligence
+          - Engineering Applications of Artificial Intelligence
+          - Displays
+          - International Journal of Computer Information Systems and Industrial Management Applications (IJCISIM)
+          - ECTI Transactions on Computer and Information Technology (ECTI-CIT)
+          - Science & Technology Asia
+          - Journal of Science and Technology, Mahasarakham University
+      - bullet: |
+          **Conference reviewer**
+
+          - FUZZ-IEEE 2024
+          - APSIPA ASC 2022
+          - IIHMSP-FITAT 2020
+          - FSDM 2018
+      - bullet: |
+          **Conference organizer**
+
+          - Registration Co-Chair, APSIPA ASC 2022, Chiang Mai, Thailand (Nov 2022)
+          - IEEE CIBCB 2016, Chiang Mai, Thailand (Oct 2016)
+
+    Teaching:
+      - bullet: |
+          **Undergraduate**
+
+          - 259201 Computer Programming for Engineers (Python)
+          - 261102 Computer Programming (C++)
+          - 261306 Computer Engineering Probability and Statistics
+          - 261405 Advanced Computer Engineering Technology
+          - 269400 Advanced Information Systems and Network Technology
+          - 261459 Deep Learning
+          - 261499 Selected Topics in Computational Intelligence (Deep Learning)
+          - 269382 Data Analytics for Non-IT Majors
+          - 269481 Project Design in Information Technology
+      - bullet: |
+          **Graduate**
+
+          - 261795 Selected Topics in Computational Intelligence (Deep Learning)
+
+    Certificates:
+      - name: Deep Learning Specialization
+        date: 2018-11
+        issuer: deeplearning.ai (Coursera)
+        icon: fa-solid fa-brain
+      - name: Japanese-Language Proficiency Test N2
+        date: 2018-08
+        issuer: Japan Foundation
+        icon: fa-solid fa-language
+      - name: Japanese-Language Proficiency Test N3
+        date: 2015-01
+        issuer: Japan Foundation
+        icon: fa-solid fa-language
+
+    Languages:
+      - name: Thai
+        summary: Native speaker
+      - name: English
+        summary: Professional working proficiency
+      - name: Japanese
+        summary: JLPT N2
+
+    Interests:
+      - name: Forensic odontology, Computer vision-based medical device reading
+        icon: fa-solid fa-star
+        keywords: "Medical image analysis, Computer vision, Machine learning, Deep learning, Data analytics, Robotics"

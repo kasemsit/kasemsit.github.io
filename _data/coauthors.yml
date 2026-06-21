@@ -1,0 +1,5 @@
+# Map last names to canonical author info so jekyll-scholar can link coauthors.
+# Example:
+# "theera-umpon":
+#   - firstname: ["Nipon", "N."]
+#     url: https://example.com/
