@@ -12,7 +12,7 @@ nav_order: 2
 - 259201 Computer Programming for Engineers (Python)
 - 261102 Computer Programming (C++)
 - [261306 Computer Engineering Probability and Statistics](https://kasemsit.github.io/261306)
-- 261405 Advanced Computer Engineering Technology
+- [261405 Advanced Computer Engineering Technology](https://kasemsit.github.io/261405)
 - 269400 Advanced Information Systems and Network Technology
 - 261459 Deep Learning
 - 261499 Selected Topics in Computational Intelligence (Deep Learning)
